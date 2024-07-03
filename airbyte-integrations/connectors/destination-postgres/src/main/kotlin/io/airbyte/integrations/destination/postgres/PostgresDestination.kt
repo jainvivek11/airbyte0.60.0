@@ -62,17 +62,17 @@ class PostgresDestination :
             .withConnectionTimeout(Duration.ofSeconds(60))
             .withConnectionInitSql(
                 """
-                               CREATE OR REPLACE FUNCTION pg_temp.airbyte_safe_cast(_in text, INOUT _out ANYELEMENT)
-                                 LANGUAGE plpgsql AS
-                               ${'$'}func${'$'}
-                               BEGIN
-                                 EXECUTE format('SELECT %L::%s', ${'$'}1, pg_typeof(_out))
-                                 INTO  _out;
-                               EXCEPTION WHEN others THEN
-                                 -- do nothing: _out already carries default
-                               END
-                               ${'$'}func${'$'};
-                               
+                               //CREATE OR REPLACE FUNCTION pg_temp.airbyte_safe_cast(_in text, INOUT _out ANYELEMENT)
+                                // LANGUAGE plpgsql AS
+                               //${'$'}func${'$'}
+                               //BEGIN
+                                 //EXECUTE format('SELECT %L::%s', ${'$'}1, pg_typeof(_out))
+                                 //INTO  _out;
+                               //EXCEPTION WHEN others THEN
+                                 //-- do nothing: _out already carries default
+                               //END
+                               //${'$'}func${'$'};
+                               Select 1;
                                """.trimIndent()
             )
     }
